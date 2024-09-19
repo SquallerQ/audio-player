@@ -10,10 +10,36 @@
 
 <body>
   <main>
+    <div class="container">
+
+      <div class="inner">
+
+        <div class="image"></div>
+
+        <audio controls id="hidden-progress">
+          <source src="audio/windows-on.mp3" type="audio/mp3">
+        </audio>
+        <input type="range" value="0" id="real-progress">
+
+        <div class="buttons">
+
+          <div class="button">prev</div>
+          <div class="button" id="play-btn">play/pause</div>
+          <div class="button">next</div>
+        </div>
+
+
+        <div class="artist"></div>
+        <div class="track"></div>
+      </div>
+
+
+    </div>
 
   </main>
 
 
   <script src="script.js"></script>
 </body>
+
 </html>
