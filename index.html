@@ -16,15 +16,16 @@
 
         <div class="image"></div>
 
-        <audio controls id="hidden-progress">
-          <source src="audio/windows-on.mp3" type="audio/mp3">
+        <audio controls id="audio">
         </audio>
-        <input type="range" value="0" id="real-progress">
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
 
         <div class="buttons">
 
           <div class="button">prev</div>
-          <div class="button" id="play-btn">play/pause</div>
+          <div class="button pause" id="play-btn">play/pause</div>
           <div class="button">next</div>
         </div>
 
