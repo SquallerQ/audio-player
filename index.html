@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audio player</title>
+  <link rel="icon" sizes="32x32" href="media/favicon-32x32.png" type="image/png">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,7 +15,9 @@
 
       <div class="inner">
 
-        <div class="image"></div>
+        <div class="image-conatiner">
+          <img class="image"src="media/img/1.jpg" alt="">
+        </div>
 
         <audio controls class="audio"></audio>
         <span class="current-time">0:00</span>
@@ -31,8 +34,7 @@
         </div>
 
 
-        <div class="artist"></div>
-        <div class="track"></div>
+        <span class="artist-name"></span>-<span class="track-name"></span>
       </div>
 
 

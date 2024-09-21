@@ -45,8 +45,8 @@ a {
 }
 .image {
   background-color: burlywood;
-  width: 500px;
-  height: 300px;
+  max-width: 400px;
+  max-height: 300px;
 }
 .buttons {
   display: flex;

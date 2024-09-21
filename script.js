@@ -9,15 +9,24 @@ const playButton = document.querySelector("#play-btn");
 const prevButton = document.querySelector(".prev-btn");
 const nextButton = document.querySelector(".next-btn");
 
+const songImage = document.querySelector('.image')
+const artistName = document.querySelector('.artist-name')
+const trackName = document.querySelector('.track-name')
 
 
-
-const songsArray = ['function', 'razor_bones', 'windows-on']
+const songsArray = [
+  { song: "function.mp3", img: '1.jpg', artist: 'JZ', track: 'Function'},
+  { song: "razor_bones.mp3", img: '2.jpg', artist: 'DZ', track: 'Bones'},
+  { song: "windows-on.mp3", img: '3.jpg', artist: 'VB', track: 'Windows'},
+];
 let songIndex = 0;
 let isPlay = false;
 
-function renderSong (song) {
-  audio.src = `media/audio/${song}.mp3`
+function renderSong (index) {
+  audio.src = `media/audio/${index.song}`;
+  songImage.src = `media/img/${index.img}`;
+  artistName.innerHTML = index.artist
+  trackName.innerHTML = index.track;
 }
 renderSong(songsArray[songIndex]);
 
