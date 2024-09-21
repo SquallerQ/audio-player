@@ -1,9 +1,14 @@
-const audio = document.querySelector("#audio");
-const progressBar = document.querySelector("#progress-bar");
+const audio = document.querySelector(".audio");
+const progressBar = document.querySelector(".progress-bar");
 const progressContainer = document.querySelector(".progress-container");
-const playButton = document.querySelector("#play-btn");
+
 const trackTime = document.querySelector('.max-time')
 const currentTimeElement = document.querySelector('.current-time');
+
+const playButton = document.querySelector("#play-btn");
+const prevButton = document.querySelector(".prev-btn");
+const nextButton = document.querySelector(".next-btn");
+
 
 
 
@@ -12,10 +17,29 @@ let songIndex = 0;
 let isPlay = false;
 
 function renderSong (song) {
-  audio.src = `audio/${song}.mp3`
+  audio.src = `media/audio/${song}.mp3`
 }
 renderSong(songsArray[songIndex]);
 
+function prevSong () {
+  songIndex = songIndex - 1;
+  if (songIndex < 0) {
+    songIndex = songsArray.length - 1;
+  }
+  renderSong(songsArray[songIndex]);
+  playAudio();
+}
+prevButton.addEventListener("click", prevSong);
+function nextSong() {
+  songIndex = songIndex + 1;
+  if (songIndex > songsArray.length -1) {
+    songIndex = 0
+  }
+  renderSong(songsArray[songIndex]);
+  playAudio();
+}
+nextButton.addEventListener('click', nextSong)
+audio.addEventListener('ended', nextSong)
 
 function correctTime(seconds) {
   const minutes = Math.floor(seconds / 60); 
@@ -31,10 +55,8 @@ function correctTime(seconds) {
 playButton.addEventListener('click', function () {
   if (isPlay === false) {
     playAudio()
-    isPlay = true;
   } else {
     pauseAudio();
-    isPlay = false;
   }
 })
 
@@ -42,11 +64,13 @@ function playAudio () {
   audio.play();
   playButton.classList.remove('pause')
   playButton.classList.add('play')
+  isPlay = true;
 }
 function pauseAudio () {
   audio.pause();
   playButton.classList.add('pause')
   playButton.classList.remove('play')
+  isPlay = false;
 }
 
 function changeProgressBar (e) {
