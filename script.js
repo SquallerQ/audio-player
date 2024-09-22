@@ -40,6 +40,8 @@ function prevSong () {
   renderSong(songsArray[songIndex]);
   if (isPlay === true) {
     playAudio();
+  } else {
+    activeSongInPlaylist(songIndex);
   }
 }
 prevButton.addEventListener("click", function () {
@@ -56,6 +58,8 @@ function nextSong() {
   renderSong(songsArray[songIndex]);
   if (isPlay === true) {
     playAudio();
+  } else {
+    activeSongInPlaylist(songIndex);
   }
 }
 nextButton.addEventListener('click', function () {
@@ -89,6 +93,7 @@ function playAudio () {
   playButton.classList.remove('pause')
   playButton.classList.add('play')
   isPlay = true;
+  activeSongInPlaylist(songIndex)
 }
 function pauseAudio () {
   audio.pause();
@@ -128,7 +133,6 @@ const playlist = document.querySelector(".playlist__items");
 
 function renderPlaylist (array) {
   for (let i = 0; i < array.length; i++) {
-    console.log(array[i].artist);
     const item = document.createElement("div");
     item.classList.add("playlist__item");
     item.innerHTML = `<div class="playlist__item-info">
@@ -140,10 +144,25 @@ function renderPlaylist (array) {
             <div class="playlist__item-duration">
               ${array[i].long}
             </div>`;
+
+    item.addEventListener('click', clickOnItemInPlaylist)
     playlist.append(item); 
   }
-
-
 }
-
 renderPlaylist(songsArray);
+
+function activeSongInPlaylist (songIndex) {
+  const allSongsAtPlaylist = document.querySelectorAll('.playlist__item');
+  allSongsAtPlaylist.forEach(item => {
+    item.classList.remove('playlist__item--active')
+  });
+
+  allSongsAtPlaylist[songIndex].classList.add('playlist__item--active')
+}
+activeSongInPlaylist(songIndex);
+
+function clickOnItemInPlaylist () {
+  console.log('asa');
+  console.log(this);
+}
+console.log(playlist);

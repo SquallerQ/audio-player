@@ -226,6 +226,9 @@ body {
   align-items: center;
 
   background-color: #d1caff;
+  background-color: #000;
+  opacity: 0.9;
+  color: #fff;
   height: 70px;
   padding: 20px;
   width: 100%;
@@ -233,7 +236,7 @@ body {
   border-bottom: 1px solid #3f3b59;
 }
 .playlist__item--active {
-  background-color: red;
+  background-color: #3f3b59;
 }
 .playlist__item-info {
   display: flex;
