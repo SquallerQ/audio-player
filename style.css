@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  height: 100%;
 }
 
 *,
@@ -51,6 +52,12 @@ a {
 
 body {
   font-family: 'Playwrite', serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+main {
+  flex-grow: 1;
 }
 .container {
   margin: 0 auto;
@@ -65,7 +72,7 @@ body {
 .player__inner {
   display: flex;
   column-gap: 50px;
-  padding-top: 50px;
+  padding-top: 10px;
   justify-content: center;
 }
 .image {
@@ -206,18 +213,18 @@ body {
 }
 
 .playlist {
-  margin-top: 30px;
+  margin: 15px 0;
 }
 .playlist__title {
   margin-bottom: 5px;
 }
 .playlist__items {
-  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 600px;
   border: 2px solid #ccc;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 .playlist__item {
   display: flex;
@@ -270,4 +277,33 @@ body {
 }
 .playlist__item-duration {
   font-size: 14px;
+}
+
+.footer-inner {
+  background-color: #d1caff;
+
+  border: 2px solid #ccc;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+
+  padding: 10px 15px;
+
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-inner__information {
+  display: flex;
+  align-items: center;
+}
+.footer-inner__information-link {
+  padding-right: 20px;
+}
+.footer-inner__github-img {
+  width: 50px;
+  height: 50px;
+}
+.footer-inner__school-img {
+  width: 45px;
+  height: 45px;
 }
