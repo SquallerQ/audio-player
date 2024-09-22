@@ -207,7 +207,6 @@ body {
 
 .playlist {
   margin-top: 30px;
-
 }
 .playlist__title {
   margin-bottom: 5px;
@@ -234,9 +233,28 @@ body {
   width: 100%;
   
   border-bottom: 1px solid #3f3b59;
+  transition: all 0.1s ease;
+}
+.playlist__item:hover .playlist__item-img {
+  opacity: 0.6;
+}
+.playlist__item:hover .playlist__item-info {
+  opacity: 0.6;
+}
+.playlist__item:hover .playlist__item-duration {
+  opacity: 0.6;
 }
 .playlist__item--active {
   background-color: #3f3b59;
+}
+.playlist__item--active:hover .playlist__item-img {
+  opacity: 1;
+}
+.playlist__item--active:hover .playlist__item-info {
+  opacity: 1;
+}
+.playlist__item--active:hover .playlist__item-duration {
+  opacity: 1;
 }
 .playlist__item-info {
   display: flex;
@@ -247,6 +265,8 @@ body {
   height: 40px;
   display: inline;
   margin-right: 20px;
+
+  transition: all 0.1s ease;
 }
 .playlist__item-duration {
   font-size: 14px;
