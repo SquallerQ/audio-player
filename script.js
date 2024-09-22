@@ -15,10 +15,10 @@ const trackName = document.querySelector('.track-name')
 
 
 const songsArray = [
-  { song: "6 Senz - Function.mp3", img: '6_senz.jpg', artist: '6 Senz', track: 'Function'},
-  { song: "Spvrrow - Space Odyssey.mp3", img: 'sparrow.jpg', artist: 'Spvrrow', track: 'Space Odyssey'},
-  { song: "Sxlect - Full Send.mp3", img: 'sxlect.jpg', artist: 'Sxlect', track: 'Full Send'},
-  { song: "Lxst Cxntury - Deep Fusion.mp3", img: 'lxst.webp', artist: 'Lxst Cxntury', track: 'Deep Fusion'},
+  { song: "6 Senz - Function.mp3", img: '6_senz.jpg', artist: '6 Senz', track: 'Function', long: '03:45'},
+  { song: "Spvrrow - Space Odyssey.mp3", img: 'sparrow.jpg', artist: 'Spvrrow', track: 'Space Odyssey', long: '02:41'},
+  { song: "Sxlect - Full Send.mp3", img: 'sxlect.jpg', artist: 'Sxlect', track: 'Full Send', long: '02:27'},
+  { song: "Lxst Cxntury - Deep Fusion.mp3", img: 'lxst.webp', artist: 'Lxst Cxntury', track: 'Deep Fusion', long: '03:26'},
 ];
 let songIndex = 0;
 let isPlay = false;
@@ -122,3 +122,28 @@ progressContainer.addEventListener("click", changeProgressBarAfterClick);
 audio.addEventListener("loadedmetadata", function () {
   trackTime.textContent = correctTime(audio.duration);
 });
+
+
+const playlist = document.querySelector(".playlist__items");
+
+function renderPlaylist (array) {
+  for (let i = 0; i < array.length; i++) {
+    console.log(array[i].artist);
+    const item = document.createElement("div");
+    item.classList.add("playlist__item");
+    item.innerHTML = `<div class="playlist__item-info">
+              <img class="playlist__item-img" src="media/img/${array[i].img}" alt="song image">
+              <span>${i + 1}.<span>
+              <span>${array[i].artist}</span> - 
+              <span>${array[i].track}</span>
+            </div>
+            <div class="playlist__item-duration">
+              ${array[i].long}
+            </div>`;
+    playlist.append(item); 
+  }
+
+
+}
+
+renderPlaylist(songsArray);
