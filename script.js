@@ -15,10 +15,10 @@ const trackName = document.querySelector('.track-name')
 
 
 const songsArray = [
-  { song: "6 Senz - Function.mp3", img: '6_senz.jpg', artist: '6 Senz', track: 'Function', long: '03:45'},
-  { song: "Spvrrow - Space Odyssey.mp3", img: 'sparrow.jpg', artist: 'Spvrrow', track: 'Space Odyssey', long: '02:41'},
-  { song: "Sxlect - Full Send.mp3", img: 'sxlect.jpg', artist: 'Sxlect', track: 'Full Send', long: '02:27'},
-  { song: "Lxst Cxntury - Deep Fusion.mp3", img: 'lxst.webp', artist: 'Lxst Cxntury', track: 'Deep Fusion', long: '03:26'},
+  { id: '0', song: "6 Senz - Function.mp3", img: '6_senz.jpg', artist: '6 Senz', track: 'Function', long: '03:45'},
+  { id: '1', song: "Spvrrow - Space Odyssey.mp3", img: 'sparrow.jpg', artist: 'Spvrrow', track: 'Space Odyssey', long: '02:41'},
+  { id: '2', song: "Sxlect - Full Send.mp3", img: 'sxlect.jpg', artist: 'Sxlect', track: 'Full Send', long: '02:27'},
+  { id: '3', song: "Lxst Cxntury - Deep Fusion.mp3", img: 'lxst.webp', artist: 'Lxst Cxntury', track: 'Deep Fusion', long: '03:26'},
 ];
 let songIndex = 0;
 let isPlay = false;
@@ -145,7 +145,7 @@ function renderPlaylist (array) {
               ${array[i].long}
             </div>`;
 
-    item.addEventListener('click', clickOnItemInPlaylist)
+    // item.addEventListener('click', clickOnItemInPlaylist)
     playlist.append(item); 
   }
 }
@@ -166,3 +166,33 @@ function clickOnItemInPlaylist () {
   console.log(this);
 }
 console.log(playlist);
+
+playlist.addEventListener('click', function(e) {
+  let song = ''
+  const allSongs = document.querySelectorAll('.playlist__item')
+  allSongs.forEach(function (item, index) {
+    console.log(index);
+    console.log(item);
+    if (item == e.target) {
+      console.log('adada');
+      console.log(index);
+      song = index;
+    }
+  })
+  console.log(song);
+  songIndex = song
+
+
+
+
+
+    progressBar.value = 0;
+    renderSong(songsArray[songIndex]);
+    if (isPlay === true) {
+      playAudio();
+    } else {
+      activeSongInPlaylist(songIndex);
+    }
+  // playAudio()
+  console.log(e.target);
+})
