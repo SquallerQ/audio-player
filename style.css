@@ -315,3 +315,38 @@ main {
   width: 45px;
   height: 45px;
 }
+
+@media (max-width: 650px) {
+  .player__inner {
+    flex-direction: column;
+  }
+  .playlist {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .playlist__items {
+    width: auto;
+  }
+  .playlist__item {
+    font-size: 14px;
+    padding: 20px 10px;
+  }
+  .playlist__item-duration {
+    padding: 0 0 0 10px;
+    font-size: 10px;
+  }
+  .footer-inner {
+    font-size: 15px;
+    width: 100%;   
+  }
+}
+
+@media (max-width: 350px) {
+  .container {
+    padding: 0;
+  }
+  .playlist__title {
+    margin-left: 5px;
+  }
+}
