@@ -55,7 +55,10 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  background-image: url('media/img/back.jpg');
 }
+
 main {
   flex-grow: 1;
 }
@@ -71,9 +74,9 @@ main {
 
 .player__inner {
   display: flex;
-  column-gap: 50px;
-  padding-top: 10px;
+  margin-top: 10px;
   justify-content: center;
+  border: 1px solid #ccc;
 }
 .image {
   width: 300px;
@@ -81,9 +84,12 @@ main {
   object-fit: cover;
 }
 .player__inner-controls {
-  padding: 20px 0;
+  padding: 20px 25px;
   display: flex;
   flex-direction: column;
+  background-color: #f9f9f9;
+  opacity: 0.9;
+  border: 1px solid #3f3b59;
 }
 .artist-name {
   font-family: 'Corben-Bold';
@@ -217,6 +223,7 @@ main {
 }
 .playlist__title {
   margin-bottom: 5px;
+  color: #fff;
 }
 .playlist__items {
   display: flex;
@@ -291,6 +298,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  opacity: 0.9;
 }
 .footer-inner__information {
   display: flex;
