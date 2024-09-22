@@ -6,8 +6,8 @@ const trackTime = document.querySelector('.max-time')
 const currentTimeElement = document.querySelector('.current-time');
 
 const playButton = document.querySelector("#play-btn");
-const prevButton = document.querySelector(".prev-btn");
-const nextButton = document.querySelector(".next-btn");
+const prevButton = document.querySelector(".prev");
+const nextButton = document.querySelector(".next");
 
 const songImage = document.querySelector('.image')
 const artistName = document.querySelector('.artist-name')
@@ -15,9 +15,10 @@ const trackName = document.querySelector('.track-name')
 
 
 const songsArray = [
-  { song: "function.mp3", img: '1.jpg', artist: 'JZ', track: 'Function'},
-  { song: "razor_bones.mp3", img: '2.jpg', artist: 'DZ', track: 'Bones'},
-  { song: "windows-on.mp3", img: '3.jpg', artist: 'VB', track: 'Windows'},
+  { song: "6 Senz - Function.mp3", img: '6_senz.jpg', artist: '6 Senz', track: 'Function'},
+  { song: "Spvrrow - Space Odyssey.mp3", img: 'sparrow.jpg', artist: 'Spvrrow', track: 'Space Odyssey'},
+  { song: "Sxlect - Full Send.mp3", img: 'sxlect.jpg', artist: 'Sxlect', track: 'Full Send'},
+  { song: "Lxst Cxntury - Deep Fusion.mp3", img: 'lxst.webp', artist: 'Lxst Cxntury', track: 'Deep Fusion'},
 ];
 let songIndex = 0;
 let isPlay = false;
@@ -31,23 +32,37 @@ function renderSong (index) {
 renderSong(songsArray[songIndex]);
 
 function prevSong () {
+  progressBar.value = 0;
   songIndex = songIndex - 1;
   if (songIndex < 0) {
     songIndex = songsArray.length - 1;
   }
   renderSong(songsArray[songIndex]);
-  playAudio();
+  if (isPlay === true) {
+    playAudio();
+  }
 }
-prevButton.addEventListener("click", prevSong);
+prevButton.addEventListener("click", function () {
+  prevSong()
+  // progressBar.style.width = 0;
+});
+
 function nextSong() {
+  progressBar.value = 0;
   songIndex = songIndex + 1;
   if (songIndex > songsArray.length -1) {
     songIndex = 0
   }
   renderSong(songsArray[songIndex]);
-  playAudio();
+  if (isPlay === true) {
+    playAudio();
+  }
 }
-nextButton.addEventListener('click', nextSong)
+nextButton.addEventListener('click', function () {
+  nextSong()
+  // progressBar.style.width = 0;
+})
+
 audio.addEventListener('ended', nextSong)
 
 function correctTime(seconds) {
@@ -87,7 +102,8 @@ function changeProgressBar (e) {
   const currentTime = e.srcElement.currentTime;
    if (!isNaN(duration)) {
     const progressPercent = (currentTime / duration) * 100;
-    progressBar.style.width = `${progressPercent}%`;
+    // progressBar.style.width = `${progressPercent}%`;
+    progressBar.value = `${progressPercent}`;
   }
 
   currentTimeElement.textContent = correctTime(currentTime);

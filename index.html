@@ -11,33 +11,42 @@
 
 <body>
   <main>
-    <div class="container">
+    <div class="player">
+      <div class="container">
 
-      <div class="inner">
+        <div class="player__inner">
+          <div class="player__inner-image">
+              <img class="image" alt="image">
+          </div>
 
-        <div class="image-conatiner">
-          <img class="image"src="media/img/1.jpg" alt="">
+          <div class="player__inner-controls">
+            <div class="artist-name"></div>
+            <div class="track-name"></div>
+            <audio controls class="audio"></audio>
+            <div class="track-time">
+              <div class="current-time">0:00</div>
+              <div class="max-time">0:00</div>
+            </div>
+            <div class="progress-container">
+              <!-- <div class="progress-bar"></div>-->
+              <input type="range" class="progress-bar" id="progress-bar" value="0" min="0" step="1"> 
+            </div>
+
+            <div class="buttons">
+              <div class="button prev"></div>
+              <div class="pause" id="play-btn"></div>
+              <div class="button next"></div>
+            </div>
+
+
+            
+
+          </div>
+
+
         </div>
 
-        <audio controls class="audio"></audio>
-        <span class="current-time">0:00</span>
-        <div class="progress-container">
-          <div class="progress-bar"></div>
-        </div>
-        <span class="max-time">0:00</span>
-
-        <div class="buttons">
-
-          <div class="button prev-btn">prev</div>
-          <div class="button pause" id="play-btn">play/pause</div>
-          <div class="button next-btn">next</div>
-        </div>
-
-
-        <span class="artist-name"></span>-<span class="track-name"></span>
       </div>
-
-
     </div>
 
   </main>
