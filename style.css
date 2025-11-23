@@ -74,7 +74,7 @@ main {
 
 .player__inner {
   display: flex;
-  margin-top: 10px;
+  margin-top: 100px;
   justify-content: center;
   border: 1px solid #ccc;
 }
@@ -301,6 +301,7 @@ main {
 @media (max-width: 650px) {
   .player__inner {
     flex-direction: column;
+    margin-top: 50px;
   }
   .playlist {
     display: flex;
