@@ -13,15 +13,19 @@ const songImage = document.querySelector('.image')
 const artistName = document.querySelector('.artist-name')
 const trackName = document.querySelector('.track-name')
 
+const FIRST_SONG_INDEX = 0;
 
 const songsArray = [
-  { song: "6 Senz - Function.mp3", img: '6_senz.jpg', artist: '6 Senz', track: 'Function', long: '03:45'},
-  { song: "Spvrrow - Space Odyssey.mp3", img: 'sparrow.jpg', artist: 'Spvrrow', track: 'Space Odyssey', long: '02:41'},
-  { song: "Sxlect - Full Send.mp3", img: 'sxlect.jpg', artist: 'Sxlect', track: 'Full Send', long: '02:27'},
-  { song: "Lxst Cxntury - Deep Fusion.mp3", img: 'lxst.webp', artist: 'Lxst Cxntury', track: 'Deep Fusion', long: '03:26'},
+  { song: "6 Senz - Function.mp3", img: '6_senz.jpg', artist: '6 Senz', track: 'Function', duration: '03:45'},
+  { song: "Spvrrow - Space Odyssey.mp3", img: 'sparrow.jpg', artist: 'Spvrrow', track: 'Space Odyssey', duration: '02:41'},
+  { song: "Sxlect - Full Send.mp3", img: 'sxlect.jpg', artist: 'Sxlect', track: 'Full Send', duration: '02:27'},
+  { song: "Lxst Cxntury - Deep Fusion.mp3", img: 'lxst.webp', artist: 'Lxst Cxntury', track: 'Deep Fusion', duration: '03:26'},
 ];
+
+const LAST_SONG_INDEX = songsArray.length - 1;
+
 let songIndex = 0;
-let isPlay = false;
+let isPlaying = false;
 
 function renderSong (index) {
   audio.src = `media/audio/${index.song}`;
@@ -34,11 +38,11 @@ renderSong(songsArray[songIndex]);
 function prevSong () {
   progressBar.value = 0;
   songIndex = songIndex - 1;
-  if (songIndex < 0) {
-    songIndex = songsArray.length - 1;
+  if (songIndex < FIRST_SONG_INDEX) {
+    songIndex = LAST_SONG_INDEX;
   }
   renderSong(songsArray[songIndex]);
-  if (isPlay === true) {
+  if (isPlaying === true) {
     playAudio();
   } else {
     activeSongInPlaylist(songIndex);
@@ -46,17 +50,16 @@ function prevSong () {
 }
 prevButton.addEventListener("click", function () {
   prevSong()
-  // progressBar.style.width = 0;
 });
 
 function nextSong() {
   progressBar.value = 0;
   songIndex = songIndex + 1;
-  if (songIndex > songsArray.length -1) {
-    songIndex = 0
+  if (songIndex > LAST_SONG_INDEX) {
+    songIndex = FIRST_SONG_INDEX
   }
   renderSong(songsArray[songIndex]);
-  if (isPlay === true) {
+  if (isPlaying === true) {
     playAudio();
   } else {
     activeSongInPlaylist(songIndex);
@@ -64,10 +67,14 @@ function nextSong() {
 }
 nextButton.addEventListener('click', function () {
   nextSong()
-  // progressBar.style.width = 0;
 })
 
 audio.addEventListener('ended', nextSong)
+
+audio.addEventListener('error', function() {
+  console.error("Error loading audio file");
+  nextSong();
+});
 
 function correctTime(seconds) {
   const minutes = Math.floor(seconds / 60); 
@@ -81,7 +88,7 @@ function correctTime(seconds) {
 
 
 playButton.addEventListener('click', function () {
-  if (isPlay === false) {
+  if (isPlaying === false) {
     playAudio()
   } else {
     pauseAudio();
@@ -92,14 +99,14 @@ function playAudio () {
   audio.play();
   playButton.classList.remove('pause')
   playButton.classList.add('play')
-  isPlay = true;
+  isPlaying = true;
   activeSongInPlaylist(songIndex)
 }
 function pauseAudio () {
   audio.pause();
   playButton.classList.add('pause')
   playButton.classList.remove('play')
-  isPlay = false;
+  isPlaying = false;
 }
 
 function changeProgressBar (e) {
@@ -107,7 +114,6 @@ function changeProgressBar (e) {
   const currentTime = e.srcElement.currentTime;
    if (!isNaN(duration)) {
     const progressPercent = (currentTime / duration) * 100;
-    // progressBar.style.width = `${progressPercent}%`;
     progressBar.value = `${progressPercent}`;
   }
 
@@ -142,7 +148,7 @@ function renderPlaylist (array) {
               <span>${array[i].track}</span>
             </div>
             <div class="playlist__item-duration">
-              ${array[i].long}
+              ${array[i].duration}
             </div>`;
     playlist.append(item); 
   }
